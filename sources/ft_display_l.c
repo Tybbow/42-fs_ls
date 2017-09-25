@@ -6,7 +6,7 @@
 /*   By: tiskow <tiskow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 14:37:03 by tiskow            #+#    #+#             */
-/*   Updated: 2017/09/25 15:14:42 by tiskow           ###   ########.fr       */
+/*   Updated: 2017/09/25 16:35:54 by tiskow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,16 @@ void	ft_display_uidgid(struct stat sb, LS *list)
 	ft_putchar(32);
 }
 
-void	ft_display_rlink( char *path)
+void	ft_display_rlink(char *path)
 {
 	char			*buf;
 
-	buf = ft_strnew(ft_strlen(path));
+	buf = ft_strnew(256);
 	if (buf)
 	{
-		readlink(path, buf, ft_strlen(path));
+		readlink(path, buf, 256);
 		ft_putstr(" -> ");
 		ft_putstr(buf);
-		ft_strdel(&buf);	
+		ft_strdel(&buf);
 	}
 }
