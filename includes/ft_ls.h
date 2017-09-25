@@ -6,7 +6,7 @@
 /*   By: tiskow <tiskow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 08:00:24 by tiskow            #+#    #+#             */
-/*   Updated: 2017/09/25 15:28:07 by tiskow           ###   ########.fr       */
+/*   Updated: 2017/09/25 16:04:54 by tiskow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,6 @@ void	ft_display_nol(LS **flist);
 void	ft_display_l(LS **flist, LS **dlist);
 void	ft_display_ls(LS **flist, LS **dlist, size_t dis, size_t tour);
 
-// function return lenght
-size_t	ft_uidgidlen(struct stat sb, int i);
-size_t	ft_countlist(LS *list);
-
 // function sort list
 int		ft_sortstr_reverse(LS **list, LS **newElem);
 int		ft_sortstr(LS **list, LS **newElem);
@@ -106,6 +102,7 @@ time_t 	ft_get_time_len(char *av);
 int		ft_checkopta(char *basename);
 char	*ft_dirpath(char *path2, char *name);
 void 	ft_decade(char *value, size_t valui, size_t lenght);
+size_t	ft_uidgidlen(struct stat sb, int i);
 LS		*ft_create_elem(char *name, time_t time, size_t dirorfile);
 
 // function with list tools

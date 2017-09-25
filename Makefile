@@ -6,7 +6,7 @@
 #    By: tiskow <tiskow@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 12:31:10 by tiskow            #+#    #+#              #
-#    Updated: 2017/09/21 17:29:05 by tiskow           ###   ########.fr        #
+#    Updated: 2017/09/25 16:05:26 by tiskow           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ SRC_NAME =      ft_ls.c\
                         ft_display_error.c\
                         ft_display_l.c\
                         ft_display_ls.c\
-                        ft_return_len.c\
                         ft_sortlist.c\
                         ft_time.c\
                         ft_tools.c\
