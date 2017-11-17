@@ -6,7 +6,7 @@
 /*   By: tiskow <tiskow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/31 15:13:05 by tiskow            #+#    #+#             */
-/*   Updated: 2017/09/25 15:18:48 by tiskow           ###   ########.fr       */
+/*   Updated: 2017/11/17 16:57:35 by tiskow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	ft_corefiles(LS **ltmp, LS **dlist, LS **flist, DIR *currentdir)
 		{
 			*flist = ft_addlist(*flist, ent->d_name, path, 0);
 			*dlist = ft_updatelist(*dlist, ent->d_name, path);
-			if (ent->d_type == DT_DIR && ent->d_seekoff > 2 && opt_R)
+			if (ent->d_type == DT_DIR && opt_R && 
+				((ft_strcmp(".", ent->d_name) && (ft_strcmp("..", ent->d_name)))))
 				*ltmp = ft_addlist(*ltmp, path, NULL, 1);	
 		}
 		ft_strdel(&path);

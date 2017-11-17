@@ -6,7 +6,7 @@
 /*   By: tiskow <tiskow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 14:37:24 by tiskow            #+#    #+#             */
-/*   Updated: 2017/09/25 15:43:36 by tiskow           ###   ########.fr       */
+/*   Updated: 2017/11/17 16:43:55 by tiskow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,28 @@ void 	ft_decade(char *value, size_t valui, size_t lenght)
 	ft_putstr(value);
 	if (y)
 		ft_strdel(&value);
+}
+
+
+size_t		ft_uidgidlen(struct stat sb, int i)
+{
+	struct passwd	*psswd;
+	struct group	*grp;
+
+	if (!i)
+	{
+		if ((psswd = getpwuid(sb.st_uid)) != NULL)
+			return (ft_strlen(psswd->pw_name));
+		else
+			return (ft_intlen(sb.st_uid));
+	}
+	else
+	{
+		if ((grp = getgrgid(sb.st_gid)) != NULL)
+        	return (ft_strlen(grp->gr_name));
+		else
+			return (ft_intlen(sb.st_gid));
+	}
 }
 
 LS	*ft_create_elem(char *name, time_t time, size_t dirorfile)
