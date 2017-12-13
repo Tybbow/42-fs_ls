@@ -6,7 +6,7 @@
 /*   By: tiskow <tiskow@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 14:37:00 by tiskow            #+#    #+#             */
-/*   Updated: 2017/09/25 15:14:16 by tiskow           ###   ########.fr       */
+/*   Updated: 2017/12/13 13:48:09 by tiskow           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,48 +28,46 @@ void		ft_display_error(const char *name)
 	perror(name);
 }
 
-void    	ft_stat_error(char *name)
+void		ft_stat_error(char *name)
 {
-        static char *str;
+	static char	*str;
 
-        str = NULL;
-        if (!ft_strcmp(name, ""))
-        {
-                perror("ls: fts_open");
-                exit(1);
-        }
-        else
-        {
-                str = ft_strjoin("ls: ", name);
-                perror(str);
-                ft_memdel((void*)&str);
-        }
-}
-
-void		ft_read_errors(LS *elist)
-{
-	struct	stat 	statbuf;
-
-	while (elist)
+	str = NULL;
+	if (!ft_strcmp(name, ""))
 	{
-		lstat(elist->name, &statbuf);
-		if (!ft_strcmp(elist->name, ""))
-		{
-			ft_stat_error(elist->name);
-			exit(1);
-		}
-		if (!S_ISDIR(statbuf.st_mode))
-			ft_stat_error(elist->name);
-		else
-			ft_display_error(elist->name);
-		ft_freelistone(&elist);
+		perror("ls: fts_open");
+		exit(1);
+	}
+	else
+	{
+		str = ft_strjoin("ls: ", name);
+		perror(str);
+		ft_memdel((void*)&str);
 	}
 }
 
-int			ft_check_opt(char *argv)
+void		ft_read_errors(LS *elt)
 {
-	size_t i;
-	i = 1;
+	struct stat	statbuf;
+
+	while (elt)
+	{
+		lstat(elt->name, &statbuf);
+		if (!ft_strcmp(elt->name, ""))
+		{
+			ft_stat_error(elt->name);
+			exit(1);
+		}
+		if (!S_ISDIR(statbuf.st_mode))
+			ft_stat_error(elt->name);
+		else
+			ft_display_error(elt->name);
+		ft_freeltone(&elt);
+	}
+}
+
+int			ft_check_opt(char *argv, size_t i)
+{
 	if (!ft_strcmp(argv, "--"))
 		return (1);
 	if (argv[0] == '-')
@@ -77,17 +75,17 @@ int			ft_check_opt(char *argv)
 		while (i < ft_strlen(argv))
 		{
 			if (argv[i] == 'a')
-				opt_a = 1;
+				g_opt_a = 1;
 			else if (argv[i] == 'l')
-				opt_l = 1;
+				g_opt_l = 1;
 			else if (argv[i] == 'r')
-				opt_r = 1;
+				g_opt_r = 1;
 			else if (argv[i] == 'R')
-				opt_R = 1;
+				g_opt_re = 1;
 			else if (argv[i] == 't')
-				opt_ti = 1;
+				g_opt_ti = 1;
 			else if (argv[i] == '1')
-				opt_1 = 1;
+				g_opt_1 = 1;
 			else
 				ft_display_illegal((int)argv[i]);
 			i++;
